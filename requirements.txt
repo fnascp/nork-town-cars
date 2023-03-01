@@ -1,0 +1,6 @@
+Flask
+flask-jwt-extended
+Flask-SQLAlchemy
+psycopg2-binary
+dataclasses-json
+pytest

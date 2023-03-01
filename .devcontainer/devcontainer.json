@@ -1,0 +1,22 @@
+{
+	"name": "msdocs-flask-postgresql-sample-app",
+	"dockerComposeFile": "compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	
+	"customizations": {
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ckolkman.vscode-postgres"
+			]
+		}
+	},
+	
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		5000, 5432
+	]
+}
