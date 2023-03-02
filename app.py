@@ -3,14 +3,23 @@ from flask import Flask
 from api.v1.auth import auth_bp
 from api.v1.home import home_bp
 from flask_jwt_extended import JWTManager
-import sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+
 
 
 jwt = JWTManager()
-db = sqlalchemy.create_engine('postgresql+psycopg2://app_user:app_password@localhost:5432/app')
+db = SQLAlchemy()
+migrate = Migrate()
+
+DATABASE_URI = 'postgresql+psycopg2://app_user:app_password@localhost:5432/app'
 
 def create_app() -> Flask:
     app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     app.config["JWT_SECRET_KEY"] = "super-secret" 
     jwt.init_app(app)
@@ -19,8 +28,6 @@ def create_app() -> Flask:
 
     return app
 
-
-
-
+from models import User
 
 

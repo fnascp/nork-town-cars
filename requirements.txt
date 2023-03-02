@@ -1,6 +1,7 @@
 Flask
 flask-jwt-extended
 Flask-SQLAlchemy
+flask_migrate 
 psycopg2-binary
 dataclasses-json
 pytest
