@@ -2,7 +2,10 @@ import uuid
 from sqlalchemy.dialects.postgresql import UUID
 from app.app import db
 from sqlalchemy import String
+from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
+
+from exceptions.erros import UserAlreadyExistsError
 
 
 
@@ -22,5 +25,11 @@ class User(db.Model):
 
 
 def save_user(user):
-    db.session.add(user)
-    db.session.commit()
+    try:
+        db.session.add(user)
+        db.session.commit()
+    except IntegrityError:
+        raise UserAlreadyExistsError
+
+def get_by_email(email):
+    return User.query.filter_by(email=email).first()

@@ -5,3 +5,4 @@ flask_migrate
 psycopg2-binary
 dataclasses-json
 pytest
+pytest-mock
