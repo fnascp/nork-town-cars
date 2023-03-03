@@ -1,4 +1,5 @@
 from flask_jwt_extended import create_access_token
+
 from dtos.auth_dtos import (
     LoginRequestDTO, RegisterRequestDTO, RegisterResponseDTO)
 from models.user import User, save_user, get_by_email

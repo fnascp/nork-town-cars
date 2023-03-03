@@ -2,6 +2,7 @@ from flask import Flask
 
 from api.v1.auth import auth_bp
 from api.v1.home import home_bp
+from api.v1.owner import owner_bp
 
 from .app import jwt, db, migrate
 
@@ -18,7 +19,8 @@ def create_app() -> Flask:
     jwt.init_app(app)
     app.register_blueprint(auth_bp)
     app.register_blueprint(home_bp)
+    app.register_blueprint(owner_bp)
 
     return app
 
-from models import user
+from models import user, owner, car

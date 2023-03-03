@@ -17,8 +17,7 @@ auth_bp = Blueprint('auth', __name__)
 def register():
     request_data = RegisterRequestDTO.from_dict(request.json)
     try:
-        user = create_user(request_data)
-        response = RegisterResponseDTO(user.id, user.email, user.full_name)
+        response = create_user(request_data)
         return jsonify(response)
     except UserAlreadyExistsError: 
         return jsonify({"msg": "User already exists"}), 400
